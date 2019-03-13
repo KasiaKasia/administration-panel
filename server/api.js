@@ -1,8 +1,8 @@
 const express = require('express');
 const router  = express.Router(); 
-var morgan      = require('morgan');
-var mongoose    = require('mongoose'); 
-var config = require('./config');
+var morgan    = require('morgan');
+var mongoose  = require('mongoose'); 
+var config    = require('./config');
 
 
 mongoose.connect(config.database, function(err){
@@ -13,6 +13,4 @@ mongoose.connect(config.database, function(err){
 	}
 });
 
-
 module.exports = router;
-
