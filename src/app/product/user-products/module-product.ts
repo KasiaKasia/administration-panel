@@ -1,5 +1,3 @@
-
-
 export interface Product {
   userid?: string;
   productName: string;
@@ -9,7 +7,6 @@ export interface Product {
 
 
 export enum ProductType {
-
   Standard = 1,
   Premium = 2,
   Enterprise = 3,

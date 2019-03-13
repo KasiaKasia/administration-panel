@@ -24,30 +24,21 @@ export class UserLoginComponent implements OnInit {
       userName: ['', Validators.required],
       password: ['', Validators.required]
     });
-
   }
 
   isFieldInvalid(field: string) {
-
     return (
-
       (!this.loginForm.get(field).valid && this.loginForm.get(field).touched)
     );
   }
 
   login() {
-
     if (this.loginForm.dirty && this.loginForm.valid) {
-
       this.authService.login(this.loginForm.value)
         .subscribe(data => {
           if (data.json().success === false) {
-
-            console.log('Login error.');
             this.messageService.error(`Nie poprawne dane logowania`);
           } else {
-
-            console.log('Login successful.');
             this.router.navigate(['/']);
             this.messageService.success(`Jestes zalogowany`);
           }
@@ -55,6 +46,4 @@ export class UserLoginComponent implements OnInit {
         });
     }
   }
-
-
 }

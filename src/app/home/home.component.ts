@@ -16,33 +16,33 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
   }
   getValue(value: string) {
-    console.log(value);
+
     if (value === '<<') {
       this.showPage1 = true;
       this.showPage2 = false;
       this.showPage3 = false;
-      console.log(this.showPage1);
+
     } if (value === '1') {
       this.showPage1 = true;
       this.showPage2 = false;
       this.showPage3 = false;
-      console.log(this.showPage1);
+
     } if (value === '2') {
       this.showPage1 = false;
       this.showPage2 = true;
       this.showPage3 = false;
-      console.log(this.showPage2);
+
     } if (value === '3') {
       this.showPage1 = false;
       this.showPage2 = false;
       this.showPage3 = true;
-      console.log(this.showPage3);
+
     } if (value === '>>') {
       this.showPage1 = false;
       this.showPage2 = false;
       this.showPage3 = true;
-      console.log(this.showPage3);
+
     }
   }
-  
+
 }

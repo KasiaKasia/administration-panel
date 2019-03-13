@@ -1,16 +1,12 @@
 <div class="jumbotron" style="margin-top: 100px;  background-color:  #57B3F1;">
   <div class="signin-content">
-
     <div class="col">
       <div class="panel-heading text-center">
         <h4>Dodaj produkt</h4>
       </div>
-
       <div class="col">
         <div class="panel-body">
-
           <form id="add-product" [formGroup]="produktForm" (ngSubmit)="saveProduct(produktForm.value)">
-
             <div class="form-group">
               <label for="productName">Nazwa produktu</label>
               <input type="text" class="form-control" formControlName="productName" name="productName" [(ngModel)]="productName" />
@@ -22,20 +18,17 @@
                 <option [value]="ProductType.Premium">Premium</option>
                 <option [value]="ProductType.Enterprise">Enterprise</option>
               </select>
-
             </div>
             <div class="form-group">
               <label for="productDesc">Opis</label>
               <input required type="text" class="form-control" formControlName="productDesc" id="productDesc" name="productDesc" [(ngModel)]="productDesc"
               />
             </div>
-
             <div class="form-group">
               <button type="submit" class="btn btn-success" name="Dodaj produkt...">Dodaj produkt...</button>
             </div>
           </form>
         </div>
-
       </div>
     </div>
     <div class="col">
@@ -51,7 +44,6 @@
             <td>
               Typ
               <select class="custom-select" style="width: 140px;"  name="productType" id="productType" [(ngModel)]="searchProductType">
-
                   <option  disabled [value]="undefined" style="color: #495057 !important;" >filter typu</option>
                   <option [value]="ProductType.Standard">Standard</option>
                   <option [value]="ProductType.Premium">Premium</option>
@@ -65,7 +57,6 @@
         </thead>
         <tbody>
           <tr *ngFor='let product of products | Productsfilter: searchProductName:searchProductType:searchProductDesc; let productIndex = index;'>
-
             <td>
               <input required value="{{product.productName}}" name="product.productName" class="form-control" [(ngModel)]="product.productName"
               />
@@ -80,9 +71,7 @@
             <td>
               <input value="{{product.productDesc}}" name="product.productDesc" class="form-control" [(ngModel)]="product.productDesc"
               />
-
             </td>
-
             <td>
               <button type="submit" class="btn btn-success" (click)="updateProduct(product)">Edycja</button>
             </td>
@@ -96,12 +85,8 @@
             </td>
           </tr>
         </tbody>
-
       </table>
-      <!-- pager -->
-
       <nav aria-label="Page navigation example">
-
         <ul class="pagination justify-content-center" *ngIf="pager.pages && pager.pages.length">
           <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
             <a class="page-link " (click)="setPage(1)"> Pierwsza </a>
@@ -120,12 +105,10 @@
           </li>
         </ul>
       </nav>
-
       <div class="col">
         <div class="panel-heading">
           Wybierz użytkownika
         </div>
-
         <div class="form-group">
           <input id="typeahead-focus" type="text" class="form-control" [(ngModel)]="user" [ngbTypeahead]="search" (focus)="focus$.next($event.target.value)"
             (click)="click$.next($event.target.value)" #instance="ngbTypeahead" [resultFormatter]="formatUsername" [inputFormatter]="formatUsername"

@@ -16,7 +16,7 @@ export class NavbarComponent implements OnInit {
   userid: string;
   constructor(private router: Router, private authService: AuthService) { }
 
-  dateNow: Date; // = Date.now();
+  dateNow: Date;
 
   ngOnInit() {
 

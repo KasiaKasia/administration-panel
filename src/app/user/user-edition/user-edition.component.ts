@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { UserService } from '../../user.service';
 import { User, UserType, Address } from '../../model';
 
+
 @Component({
   selector: 'app-user-edition',
   templateUrl: './user-edition.component.html',
@@ -16,7 +17,6 @@ export class UserEditionComponent implements OnInit {
   user: User;
   UserType = UserType;
   userObj: any;
-
   profileForm: FormGroup;
 
   constructor(private fb: FormBuilder,
@@ -34,7 +34,6 @@ export class UserEditionComponent implements OnInit {
 
   ngOnInit() {
     this.userObj = this.authService.currentUser;
-console.log( this.userObj );
     this.profileForm = this.fb.group({
       userName: this.userName,
       email: this.email,
@@ -47,7 +46,6 @@ console.log( this.userObj );
 
     this.userService.getUser()
       .subscribe(data => {
-
         if (data.success === false) {
           if (data.errcode) {
             this.authService.logout();
@@ -55,52 +53,38 @@ console.log( this.userObj );
           }
         } else {
           this.user = data.data[0];
-
           this.populateForm(this.user);
         }
       });
   }
-
 
   makeFormControl() {
     const cloned = new FormControl('', [Validators.required]);
     return cloned;
   }
 
-
   populateForm(data): void {
-
     this.profileForm.patchValue({
-
       userName: data.username,
       email: data.email,
       type: data.type,
       description: data.description,
-
       street: data.address.street,
       houseNumber: data.address.houseNumber,
       city: data.address.city
     });
   }
 
-
   edition(formdata: any): void {
-    console.log(this.profileForm.value.description);
+ 
     if (this.profileForm.dirty && this.profileForm.valid) {
-
       this.userService.updateUser(this.profileForm.value)
         .subscribe(data => {
-
           if (!data.success && data.errcode) {
             this.authService.logout();
-            this.router.navigate(['/login']);
-            console.log('data.success === false' + data.message);
-
-          } else {
-            console.log('data.success === true' + data.message);
-          }
+            this.router.navigate(['/login']); 
+          } 
         });
     }
   }
-
 }

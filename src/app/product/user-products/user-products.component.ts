@@ -99,8 +99,7 @@ export class UserProductsComponent implements OnInit {
               this.authService.logout();
               this.router.navigate(['login']);
             }
-          } else {
-            console.log('Success ' + data.message);
+          } else {      
             this.messageService.success(`Udało się dodać product.`);
           }
           this.produktForm.reset();
@@ -108,16 +107,12 @@ export class UserProductsComponent implements OnInit {
         }, error => {
           this.messageService.error(`Nie udało się dodać productu.`);
         });
-
     }
   }
 
 
   getProducts() {
-
     this.productsService.getProducts().subscribe(res => {
-      console.log('getProducts res.data');
-      console.log(res.data);
       this.products = res.data;
       this.allItems = res.data;
       this.setPage(1);
@@ -126,10 +121,7 @@ export class UserProductsComponent implements OnInit {
 
 
   setPage(page: number) {
-
     this.pager = this.pagerService.getPager(this.allItems.length, page);
-
-    // get current page of items
     this.products = this.allItems.slice(this.pager.startIndex, this.pager.endIndex + 1);
   }
 
@@ -138,75 +130,53 @@ export class UserProductsComponent implements OnInit {
   }
 
   updateProduct(product: Product) {
-
     this.productsService.updateProduct(product, this.userObj.userid)
       .subscribe(data => {
-
         if (data.success === false) {
-
-          console.log('data.success === false ' + data.message);
-        } else {
-          console.log('data.success === true ' + data.message);
+			this.messageService.error(`Nie udało się edytować productu ${data.message}.`);
+        } else {    
           this.messageService.success(`Udało się edytować product ${product.productName}.`);
         }
       }, () => {
         this.messageService.error(`Nie udało się edytować productu ${product.productName}.`);
-
       });
   }
 
 
   addProductForUser(user_id, usernameForAddProduct, product: Product) {
-
     this.productsService.add_product_user(user_id, product)
       .subscribe(data => {
         if (data.success === false) {
           if (data.errcode) {
-            console.log('Error ' + data.message);
-          }
-          console.log('Error ' + data.message);
-
-        } else {
-          console.log('Success ' + data.message);
+           	this.messageService.error(`Nie udało się dodać produktu ${data.errcode}.`);
+          }          
+      	  this.messageService.error(`Nie udało się dodać productu ${data.message}.`);
+        } else {   
           this.messageService.success(`Udało się dodać product ${product.productName} dla użytkownika ${usernameForAddProduct}.`);
-
           this.getProducts();
         }
       }, () => {
-        this.messageService.error(`Nie udało się dodać product ${product.productName} dla użytkownika ${usernameForAddProduct}.`);
-
+        this.messageService.error(`Nie udało się dodać produktu ${product.productName} dla użytkownika ${usernameForAddProduct}.`);
       });
-
   }
 
   getUsers() {
     this.user = null;
-    this.usersService.getUsers().subscribe(res => {
-      console.log('getUsers res.data');
-      console.log(res.data);
+    this.usersService.getUsers().subscribe(res => {   
       this.users = res.data;
     });
-
   }
 
   deleteProduct(productIndex, productId): void {
-
     this.productsService.deleteProduct(productId)
       .subscribe(data => {
         if (data.success === false) {
-
           if (data.errcode) {
             this.authService.logout();
             this.router.navigate(['login']);
-
-          }
-          console.log('Error: ' + data.message);
-
+          }       
+           	this.messageService.error(`Nie udało się usunąć produktu ${data.message}.`);
         } else {
-
-          //  this.products_.splice(productIndex, 1);
-          console.log('Success ' + data.message);
-
           this.messageService.success(`Udało się usunąć product.`);
           this.getProducts();
         }

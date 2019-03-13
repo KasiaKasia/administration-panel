@@ -15,6 +15,7 @@ import { UserProductsComponent } from '../product/user-products/user-products.co
 import { UserChangePasswordComponent } from './user-change-password/user-change-password.component';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 
+
 const routes = [
   {
     path: 'user/registration',
