@@ -7,8 +7,6 @@ var config = require('../server/config');
 
 exports.signup = function (req, res, next) {
 
-  // Check for registration errors
-
   const userName = req.body.userName;
   const password = req.body.password;
   const description = "";
@@ -36,7 +34,6 @@ exports.signup = function (req, res, next) {
       });
     }
 
-    // If user is not unique, return error
     if (existingUser) {
       return res.status(201).json({
         success: false,
@@ -50,7 +47,6 @@ exports.signup = function (req, res, next) {
       city: city,
     });
 
-    // If no error, create account
     let oUser = new User({
       username: userName,
       password: password,
@@ -64,8 +60,6 @@ exports.signup = function (req, res, next) {
       }
     });
 
-
-
     oUser.save(function (err, oUser) {
       if (err) {
         res.status(400).json({
@@ -73,7 +67,6 @@ exports.signup = function (req, res, next) {
           message: 'Error processing request ' + err
         });
       }
-
       res.status(201).json({
         success: true,
         message: 'User created successfully, please login to access your account.'
@@ -82,7 +75,6 @@ exports.signup = function (req, res, next) {
     });
   });
 }
-
 
 exports.login = (req, res, next) => {
 
@@ -96,7 +88,6 @@ exports.login = (req, res, next) => {
         message: 'Error processing request ' + err
       });
     }
-
     if (!user) {
       res.status(201).json({
         success: false,
@@ -131,8 +122,6 @@ exports.login = (req, res, next) => {
                   'houseNumber': user.houseNumber,
                   'city': user.city
                 }
-
-
               },
               token: token
             });
@@ -173,17 +162,14 @@ exports.updateUser = function (req, res, next) {
           message: 'Error processing request ' + err
         });
       }
-
       if (user) {
         user.username = userName;
         user.description = description;
         user.email = email;
         user.type = type;
-
         user.address.street = street,
           user.address.houseNumber = houseNumber,
           user.address.city = city
-
       }
       console.log('2 EDYCJA');
       user.save(function (err) {
@@ -201,10 +187,10 @@ exports.updateUser = function (req, res, next) {
     });
   }
 }
+
 exports.getUses = function (req, res, next) {
 
   User.find().exec(function (err, user) {
-
     if (err) {
       res.status(400).json({
         success: false,
@@ -214,19 +200,15 @@ exports.getUses = function (req, res, next) {
     res.status(201).json({
       success: true,
       data: user
-
     });
   });
 }
-
 
 exports.getuserDetails = function (req, res, next) {
 
   User.find({
     _id: req.params.id
   }).exec(function (err, user) {
-
-
     if (err) {
       res.status(400).json({
         success: false,
@@ -237,7 +219,6 @@ exports.getuserDetails = function (req, res, next) {
       success: true,
       data: user
     });
-
   });
 }
 
@@ -248,22 +229,15 @@ exports.updatePassword = function (req, res, next) {
   const password = req.body.password;
   const retypepass = req.body.retypepass;
 
-
-
   if (!oldpassword || !password || !userid || retypepass !== password) {
-    //    console.log('Posted data is not correct or incompleted.'); 422
-    return res.status(422).json({
+     return res.status(422).json({
       success: false,
       message: 'Posted data is not correct or incompleted.'
     });
   } else {
-    /*
-    findOne - method search the user for given object `id`
-    */
-    User.findOne({
+     User.findOne({
       _id: userid
-    }, function (err, user) {
-      // res.status(400) - sets the HTTP status for the response.
+    }, function (err, user) {   
       if (err) {
         res.status(400).json({
           success: false,
@@ -273,9 +247,7 @@ exports.updatePassword = function (req, res, next) {
       if (user) {
         user.comparePassword(oldpassword, function (err, isMatch) {
           if (isMatch && !err) {
-
-            user.password = password;
-            // save -save new password
+            user.password = password;          
             user.save(function (err) {
               if (err) {
                 res.status(400).json({
@@ -283,7 +255,6 @@ exports.updatePassword = function (req, res, next) {
                   message: 'Error processing request ' + err
                 });
               }
-
               res.status(201).json({
                 success: true,
                 message: 'Password updated successfully'
