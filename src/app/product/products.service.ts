@@ -9,6 +9,7 @@ import { Product } from './user-products/module-product';
 import { User } from '../model';
 import { Settings } from '../../environments/settings';
 
+
 @Injectable()
 export class ProductsService {
 

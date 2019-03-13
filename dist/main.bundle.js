@@ -708,7 +708,6 @@ var NavbarComponent = /** @class */ (function () {
     };
     NavbarComponent.prototype.logout = function () {
         this.authService.logout();
-        console.log('You have been logged out.');
         this.router.navigate(['user/login']);
     };
     NavbarComponent = __decorate([
@@ -1316,7 +1315,6 @@ var UserProductsComponent = /** @class */ (function () {
         this.UserType = __WEBPACK_IMPORTED_MODULE_0__model__["a" /* UserType */];
         this.ProductType = __WEBPACK_IMPORTED_MODULE_5__module_product__["a" /* ProductType */];
         this.users = [];
-        // pager object
         this.pager = {};
         this.focus$ = new __WEBPACK_IMPORTED_MODULE_11_rxjs_Subject__["a" /* Subject */]();
         this.click$ = new __WEBPACK_IMPORTED_MODULE_11_rxjs_Subject__["a" /* Subject */]();
@@ -1356,19 +1354,14 @@ var UserProductsComponent = /** @class */ (function () {
                         _this.authService.logout();
                         _this.router.navigate(['login']);
                     }
-                    console.log('Error ' + data.message);
                 }
                 else {
                     console.log('Success ' + data.message);
                     _this.messageService.success("Uda\u0142o si\u0119 doda\u0107 product.");
                 }
-                //  if (!this.productid) {
                 _this.produktForm.reset();
-                // this.getProducts(this.userObj.userid);
                 _this.getProducts();
-                //  }
             }, function (error) {
-                console.log(error);
                 _this.messageService.error("Nie uda\u0142o si\u0119 doda\u0107 productu.");
             });
         }
@@ -1721,7 +1714,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var UserChangePasswordComponent = /** @class */ (function () {
-    // constructor - Dependency Injection
     function UserChangePasswordComponent(fb, authService, userService, router, messageService) {
         this.fb = fb;
         this.authService = authService;
@@ -1745,7 +1737,6 @@ var UserChangePasswordComponent = /** @class */ (function () {
         var _this = this;
         if (this.passwordForm.dirty && this.passwordForm.valid) {
             var theForm = this.passwordForm.value;
-            // getting a new password from the form
             var thePass = this.passwordForm.value.passwordGroup.password;
             var theRetypepass = this.passwordForm.value.passwordGroup.retypepass;
             theForm.password = thePass;
@@ -1763,7 +1754,6 @@ var UserChangePasswordComponent = /** @class */ (function () {
                         _this.messageService.success("Has\u0142o nie zosta\u0142o zmienione");
                     }
                     else {
-                        console.log('Change password successful.');
                         _this.messageService.success("Has\u0142o zosta\u0142o zmienione");
                     }
                     _this.passwordForm.reset();

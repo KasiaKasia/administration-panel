@@ -5,6 +5,7 @@ import { ProductsService } from '../products.service';
 import { AuthService } from '../../auth.service';
 import { Chart } from 'chart.js';
 
+
 @Component({
   selector: 'app-users-products',
   templateUrl: './users-products.component.html',

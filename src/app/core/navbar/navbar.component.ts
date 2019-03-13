@@ -3,6 +3,7 @@ import { AuthService } from '../../auth.service';
 import { Router } from '@angular/router';
 import { User, UserType } from '../../model';
 
+
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -20,16 +21,11 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
 
     setInterval(() => {
-
       this.dateNow = new Date();
     }, 1000);
   }
-
-
   logout() {
     this.authService.logout();
-    console.log('You have been logged out.');
     this.router.navigate(['user/login']);
   }
-
 }

@@ -8,18 +8,17 @@ import { ProductsService } from '../products.service';
 import { UserService } from '../../user.service';
 import { Observable } from 'rxjs/';
 import { MessageService } from '../../message.service';
-
 import { NgbTypeahead } from '@ng-bootstrap/ng-bootstrap';
 import { PagerService } from '../pager.service';
-
 import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/merge';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
-
 import { FilterPipe } from '../filter.pipe';
+
+
 @Component({
   selector: 'app-user-products',
   templateUrl: './user-products.component.html',
@@ -28,7 +27,6 @@ import { FilterPipe } from '../filter.pipe';
 
 
 export class UserProductsComponent implements OnInit {
-
 
 
   @Input()
@@ -45,13 +43,7 @@ export class UserProductsComponent implements OnInit {
   id: any;
   products: any[];
   users = [];
-
-
-
-  // array of all items to be paged
   allItems: any[];
-
-  // pager object
   pager: any = {};
 
   constructor(private fb: FormBuilder,
@@ -81,7 +73,6 @@ export class UserProductsComponent implements OnInit {
 
     this.userObj = this.authService.currentUser;
     const userid = this.userObj.userid;
-
     this.getProducts();
     this.getUsers();
 
@@ -108,19 +99,13 @@ export class UserProductsComponent implements OnInit {
               this.authService.logout();
               this.router.navigate(['login']);
             }
-            console.log('Error ' + data.message);
-
           } else {
             console.log('Success ' + data.message);
             this.messageService.success(`Udało się dodać product.`);
           }
-          //  if (!this.productid) {
           this.produktForm.reset();
-          // this.getProducts(this.userObj.userid);
           this.getProducts();
-          //  }
         }, error => {
-          console.log(error);
           this.messageService.error(`Nie udało się dodać productu.`);
         });
 
