@@ -18,7 +18,7 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 Open a terminal and go to the directory where MongoDB is installed:
   
-`cd <mongodb installation /bin>mongod.exe --logpath D:\mongo\logs --logappend --bind_ip 127.0.0.1 --auth --port 27017 --dbpath D:\mongo\data\db`
+`cd <mongodb installation /bin>mongod.exe --logpath D:\mongo\logs --bind_ip 127.0.0.1 --port 27017 --dbpath D:\mongo\data\db`
 
 You can run mongo shell without any command-line options to connect to a MongoDB instance running on your localhost with default port 270171 or or adding an option `--port` :
 
