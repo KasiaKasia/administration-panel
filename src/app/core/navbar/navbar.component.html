@@ -1,0 +1,34 @@
+<nav class="navbar navbar-expand-md fixed-top" style="color:white; position:absolute; border-style:solid; border-color:#2d8ed0; border-width:2px; background: #2d8ed9">
+  <a class="navbar-brand" routerLink="">O projekcie</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item"  routerLinkActive="active" >
+        <a class="nav-link" routerLink="users/products">Produkty</a>
+      </li>
+      <li class="nav-item"  routerLinkActive="active">
+        <a class="nav-link" *ngIf="!authService.isLoggedIn_()" routerLink="user/registration">Rejestracja</a>
+      </li>
+      <li class="nav-item"  routerLinkActive="active">
+        <a class="nav-link" *ngIf="!authService.isLoggedIn_()" routerLink="user/login">Login</a>
+      </li>
+      <li class="nav-item dropdown" routerLinkActive="active">
+        <a class="nav-link dropdown-toggle" *ngIf="!!authService.isLoggedIn_()" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          Moj profil
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="background-color:#71b9d4;  opacity: 0.9;
+                filter: Alpha(opacity=90); color:white">
+          <a class="dropdown-item" *ngIf="!!authService.isLoggedIn_()" routerLink ="user/edition" >Edycja profilu</a>
+          <a class="dropdown-item" *ngIf="!!authService.isLoggedIn_()" routerLink ="user/products" >Lista produktów</a>
+          <a class="dropdown-item" *ngIf="!!authService.isLoggedIn_()" routerLink ="user/password">Zmiana hasła</a>
+          <a class="dropdown-item" href="#" (click)="logout()">Wyloguj</a>
+        </div>
+      </li>
+    </ul>
+  </div> Dzisiaj jest: {{dateNow | date: 'dd-MM-yyyy HH:mm:ss'}}
+</nav>

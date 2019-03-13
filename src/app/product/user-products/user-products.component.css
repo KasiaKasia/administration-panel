@@ -1,0 +1,14 @@
+a {
+    cursor: pointer;
+   
+}
+ .page-link {
+  color: #6c757d  !important;
+ }
+
+ .page-item.active .page-link {
+    z-index: 1;
+    color: #fff !important;;
+    background-color: #cedff1 !important;
+    border-color: #cedff1 !important;
+}

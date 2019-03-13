@@ -1,0 +1,64 @@
+<div class="jumbotron" style="margin-top: 100px;  background-color:  #57B3F1;">
+  <div class="panel panel-default">
+    <div class="panel-heading text-center">
+      <h4> Rejestracja użytkownika</h4>
+    </div>
+
+    <div class="panel-body">
+      <form [formGroup]="registrationForm" (ngSubmit)="registration()">
+
+        <div class="form-group">
+          <label for="userName">Nazwa użytkownika  <sup>*</sup></label>
+          <input required type="text" class="form-control" formControlName="userName" id="userName" name="userName"  />
+          <!--
+            [(ngModel)]="userName"
+            #registrationForm = "ngForm" #customerForm="ngForm" #nameInput #nameModel="ngModel"
+          <div class="alert alert-danger" *ngIf="nameModel.invalid && nameModel.touched">
+            Pole nazwa jest wymagane
+          </div> -->
+        </div>
+        <div class="form-group">
+          <label for="password">Hasło  <sup>*</sup></label>
+          <input required type="text" class="form-control" formControlName="password" id="password" name="password"
+          />
+          <!--
+            [(ngModel)]="password"
+            #ageModel="ngModel"
+          <div class="alert alert-danger" *ngIf="ageModel.invalid && ageModel.touched">
+            Wiek jest wymagany
+          </div> -->
+        </div>
+        <div class="form-group">
+          <label for="email">Email  <sup>*</sup></label>
+          <input required type="text" class="form-control" formControlName="email" id="email" name="email"  />
+        </div>
+<!--
+  [(ngModel)]="email"
+ -->
+
+        <div class="form-group">
+          <label for="type">Typ  <sup>*</sup></label>
+          <select required class="form-control" formControlName="type" name="type">
+            <option [value]="UserType.Standard">Standard</option>
+            <option [value]="UserType.Premium">Premium</option>
+            <option [value]="UserType.VIP">VIP</option>
+          </select>
+          <!--
+             [(ngModel)]="type"
+            #typeModel="ngModel"
+          <div class="alert alert-danger" *ngIf="typeModel.invalid && typeModel.touched">
+            Typ klienta jest wymagany
+          </div>  -->
+        </div>
+        <!-- <button type="button" class="btn btn-default"  (click)="add()">Dodaj</button>-->
+        <!--  (click)="registrationForm.resetForm()"-->
+        <!--  [disabled]="!registrationForm.dirty"
+[disabled]="!registrationForm.form.valid"
+-->
+        <button type="button" class="btn btn-default">Resetuj</button>
+        <button type="submit" class="btn btn-success">Rejestracja</button>
+
+      </form>
+    </div>
+  </div>
+</div>

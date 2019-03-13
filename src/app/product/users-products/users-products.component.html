@@ -1,0 +1,40 @@
+<div class="jumbotron" style="margin-top: 100px;  background-color:  #57B3F1;">
+  <div class="signin-content">
+
+    <div class="col">
+      <div class="panel-heading text-center">
+        <h4>Lista wszystkich użytkowników oraz ilość produktów</h4>
+      </div>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <td>Nazwa użytkownika </td>
+            <td>Ilość produktów </td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let product of productsUsers; let productIndex = index">
+            <td>
+              <input required value="{{product.name[productIndex]}" name="product.name[productIndex]" class="form-control"
+                [(ngModel)]="product.name[productIndex]" disabled/>
+            </td>
+            <td>
+              <input value="{{product.count}}" name="product.count" class="form-control" [(ngModel)]="product.count" disabled/>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="col">
+      <div class="panel-heading text-center">
+        <h4>Wykres ilość produktów dla użytkowników </h4>
+      </div>
+      <div *ngIf="chart">
+        <canvas id="canvas">
+          {{chart}}
+        </canvas>
+      </div>
+    </div>
+  </div>
+</div>

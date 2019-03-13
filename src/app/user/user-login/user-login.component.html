@@ -1,0 +1,38 @@
+<div class="jumbotron" style="margin-top: 100px;  background-color: #57B3F1; position: statc;">
+  <div class="panel panel-default">
+    <div class="panel-heading text-center">
+      <h4>Logowanie użytkownika</h4>
+    </div>
+
+    <div class="panel-body">
+
+      <form id="login-form" class="example-form" [formGroup]="loginForm" (ngSubmit)="login()">
+
+        <div class="form-group">
+          <label for="userName">Nazwa klienta
+            <sup>*</sup>
+          </label>
+          <input required type="text" class="form-control" formControlName="userName" name="userName">
+          <div *ngIf="isFieldInvalid('userName')">
+            Wprowadź nazwę klineta
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Hasło
+            <sup>*</sup>
+          </label>
+          <input required type="password" class="form-control" formControlName="password" name="password">
+          <div *ngIf="isFieldInvalid('password')">
+            Wprowadź hasło
+          </div>
+        </div>
+
+        <div class="form-group">
+          <button type="submit" class="btn btn-success" id="Login" title="Login">Login</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
