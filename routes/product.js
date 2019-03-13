@@ -5,7 +5,6 @@ const ObjectID = require('mongodb').ObjectID;
 const MongoClient = require('mongodb').MongoClient;
 var users = require('../models/user');
 
-
 exports.saveproduct = function (req, res, next) {
 
   const userid = req.params.id;
@@ -21,28 +20,22 @@ exports.saveproduct = function (req, res, next) {
     });
   } else {
 
-    if (expid) {
-      //Edit expense
+    if (expid) {    
       products.findById({
         productName: req.body.productName
       }).exec(function (err, product) {
-
         if (err) {
           res.status(400).json({
             success: false,
             message: 'Error processing request ' + err
           });
         }
-
         if (product) {
-
           product.productName = productName;
           product.productType = productType;
           product.productDesc = productDesc;
         }
-
         product.save(function (err) {
-
           if (err) {
             res.status(400).json({
               success: false,
@@ -55,12 +48,8 @@ exports.saveproduct = function (req, res, next) {
           });
         });
       });
-
     } else {
-
-      // Add new products
       let oProduct = new products({
-
         userid: userid,
         productName: productName,
         productType: productType,
@@ -80,7 +69,6 @@ exports.saveproduct = function (req, res, next) {
           message: 'Product saved successfully'
         });
       });
-      console.log('Product saved successfully');
     }
   }
 }
@@ -148,7 +136,6 @@ exports.selectproducts = function (req, res, next) {
 }
 
 exports.deleproduct = function (req, res, next) {
-
   products.remove({
     _id: req.params.id
   }, function (err) {
@@ -166,9 +153,7 @@ exports.deleproduct = function (req, res, next) {
 }
 
 exports.updateProduct = function (req, res, next) {
-
   var updateDoc = req.body;
-  // delete updateDoc._id;
   products.updateOne({
     _id: new ObjectID(updateDoc._id)
   }, {
@@ -178,7 +163,6 @@ exports.updateProduct = function (req, res, next) {
     if (err) {
       console.log(err);
     } else {
-      // updateDoc._id = req.params.id;
       res.status(200).json(updateDoc);
     }
   });
