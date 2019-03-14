@@ -1,8 +1,15 @@
 const express = require('express');
+<<<<<<< HEAD
 const router  = express.Router();
 var morgan      = require('morgan');
 var mongoose    = require('mongoose');
 var config = require('./config');
+=======
+const router  = express.Router(); 
+var morgan    = require('morgan');
+var mongoose  = require('mongoose'); 
+var config    = require('./config');
+>>>>>>> origin/master
 
 
 mongoose.connect(config.database, function(err){
@@ -14,4 +21,3 @@ mongoose.connect(config.database, function(err){
 });
 
 module.exports = router;
-

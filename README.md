@@ -14,6 +14,19 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
 
+<<<<<<< HEAD
+=======
+## Start the mongo Shell and Connect to MongoDB
+
+Open a terminal and go to the directory where MongoDB is installed:
+  
+`cd <mongodb installation /bin>mongod.exe --logpath D:\mongo\logs --bind_ip 127.0.0.1 --port 27017 --dbpath D:\mongo\data\db`
+
+You can run mongo shell without any command-line options to connect to a MongoDB instance running on your localhost with default port 270171 or or adding an option `--port` :
+
+`mongo --port 27017`
+
+>>>>>>> origin/master
 ## Running unit tests
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
