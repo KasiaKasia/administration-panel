@@ -19,13 +19,10 @@ exports.saveproduct = function (req, res, next) {
       message: 'Posted data is not correct or incompleted.'
     });
   } else {
-
-<<<<<<< HEAD
-    if (expid) {
-
-=======
+ 
+    if (expid) { 
     if (expid) {    
->>>>>>> origin/master
+ 
       products.findById({
         productName: req.body.productName
       }).exec(function (err, product) {
@@ -54,10 +51,7 @@ exports.saveproduct = function (req, res, next) {
         });
       });
     } else {
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/master
+  
       let oProduct = new products({
         userid: userid,
         productName: productName,
