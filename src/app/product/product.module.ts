@@ -16,7 +16,6 @@ import { FilterPipe } from './filter.pipe';
 
 
 const routes = [
-
   {
     path: 'user/products',
     canActivate: [AuthGuard],
@@ -54,3 +53,4 @@ const routes = [
     ReactiveFormsModule]
 })
 export class ProductModule { }
+

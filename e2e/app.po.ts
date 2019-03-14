@@ -22,7 +22,6 @@ export class AppPage {
     const user_data_login_password = 'cccc';
     form.element(by.css('input[name=userName]')).sendKeys(user_data_login_password);
     form.element(by.css('input[name=password]')).sendKeys('user_data_login_password');
-
     form.element(by.buttonText('Login')).click();
 
     browser.sleep(2000);
@@ -35,7 +34,6 @@ export class AppPage {
     const user_data_login_password = 'cccc';
     form.element(by.css('input[name=userName]')).sendKeys(user_data_login_password);
     form.element(by.css('input[name=password]')).sendKeys(user_data_login_password);
-
     form.element(by.buttonText('Login')).click();
 
     browser.sleep(2000);
@@ -50,7 +48,6 @@ export class AppPage {
     form.element(by.css('select'))
       .element(by.cssContainingText('option', 'Premium')).click();
     form.element(by.css('input[name=productDesc]')).sendKeys('test');
-
     form.element(by.buttonText('Dodaj produkt...')).click();
 
     return addProduct;
@@ -71,7 +68,6 @@ export class AppPage {
   click_login() {
 
     const btnLoginItem = this.getLoginBtn();
-
     btnLoginItem.click();
   }
 

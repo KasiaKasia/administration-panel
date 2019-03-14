@@ -53,7 +53,7 @@ export class UserProductsComponent implements OnInit {
     private usersService: UserService,
     private authService: AuthService,
     private messageService: MessageService,
-    private pagerService: PagerService) {  }
+    private pagerService: PagerService) { }
 
 
   @ViewChild('instance') instance: NgbTypeahead;
@@ -85,7 +85,6 @@ export class UserProductsComponent implements OnInit {
 
 
   saveProduct(produktForm: any) {
-
     if (this.produktForm.dirty && this.produktForm.valid) {
       const theForm = this.produktForm.value;
       if (this.expid !== '') {
@@ -99,7 +98,8 @@ export class UserProductsComponent implements OnInit {
               this.authService.logout();
               this.router.navigate(['login']);
             }
-          } else {      
+          } else {
+            console.log('Success ' + data.message);
             this.messageService.success(`Udało się dodać product.`);
           }
           this.produktForm.reset();
@@ -113,6 +113,8 @@ export class UserProductsComponent implements OnInit {
 
   getProducts() {
     this.productsService.getProducts().subscribe(res => {
+      console.log('getProducts res.data');
+      console.log(res.data);
       this.products = res.data;
       this.allItems = res.data;
       this.setPage(1);
@@ -133,8 +135,8 @@ export class UserProductsComponent implements OnInit {
     this.productsService.updateProduct(product, this.userObj.userid)
       .subscribe(data => {
         if (data.success === false) {
-			this.messageService.error(`Nie udało się edytować productu ${data.message}.`);
-        } else {    
+          this.messageService.error(`Nie udało się edytować productu. Błąd: ${data.messagee}.`);
+        } else {
           this.messageService.success(`Udało się edytować product ${product.productName}.`);
         }
       }, () => {
@@ -148,34 +150,37 @@ export class UserProductsComponent implements OnInit {
       .subscribe(data => {
         if (data.success === false) {
           if (data.errcode) {
-           	this.messageService.error(`Nie udało się dodać produktu ${data.errcode}.`);
-          }          
-      	  this.messageService.error(`Nie udało się dodać productu ${data.message}.`);
-        } else {   
+            this.messageService.error(`Nie udało się dodać productu. Błąd: ${data.errcode}.`);
+          }
+          this.messageService.error(`Nie udało się edytować productu. Błąd: ${data.messagee}.`);
+        } else {
           this.messageService.success(`Udało się dodać product ${product.productName} dla użytkownika ${usernameForAddProduct}.`);
           this.getProducts();
         }
       }, () => {
-        this.messageService.error(`Nie udało się dodać produktu ${product.productName} dla użytkownika ${usernameForAddProduct}.`);
+        this.messageService.error(`Nie udało się dodać product ${product.productName} dla użytkownika ${usernameForAddProduct}.`);
       });
   }
 
   getUsers() {
     this.user = null;
-    this.usersService.getUsers().subscribe(res => {   
+    this.usersService.getUsers().subscribe(res => {
+      console.log('getUsers res.data');
+      console.log(res.data);
       this.users = res.data;
     });
   }
 
   deleteProduct(productIndex, productId): void {
+
     this.productsService.deleteProduct(productId)
       .subscribe(data => {
         if (data.success === false) {
           if (data.errcode) {
             this.authService.logout();
             this.router.navigate(['login']);
-          }       
-           	this.messageService.error(`Nie udało się usunąć produktu ${data.message}.`);
+          }
+          this.messageService.error(`Nie udało się usunąć productu.  ${data.message}.`);
         } else {
           this.messageService.success(`Udało się usunąć product.`);
           this.getProducts();

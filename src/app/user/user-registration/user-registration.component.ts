@@ -1,3 +1,4 @@
+
 import { User, UserType } from '../../model';
 import { Component, OnInit } from '@angular/core';
 import { NgForm, FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
@@ -11,6 +12,7 @@ import { Router } from '@angular/router';
   templateUrl: './user-registration.component.html',
   styleUrls: ['./user-registration.component.css']
 })
+
 export class UserRegistrationComponent implements OnInit {
 
   userName: string;
@@ -23,6 +25,7 @@ export class UserRegistrationComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
   }
+
 
   ngOnInit() {
     this.registrationForm = this.fb.group({
@@ -39,11 +42,13 @@ export class UserRegistrationComponent implements OnInit {
   }
 
   registration() {
+
     if (this.registrationForm.dirty && this.registrationForm.valid) {
+
       this.authService.registration(this.registrationForm.value)
         .subscribe(data => {
-          if (data.success === false) {       
-          } else {        
+          if (data.success === false) {
+          } else {
             this.router.navigate(['']);
           }
           this.registrationForm.reset();

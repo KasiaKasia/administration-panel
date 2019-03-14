@@ -7,7 +7,7 @@
       <form [formGroup]="registrationForm" (ngSubmit)="registration()">
         <div class="form-group">
           <label for="userName">Nazwa użytkownika  <sup>*</sup></label>
-          <input required type="text" class="form-control" formControlName="userName" id="userName" name="userName"  />
+          <input required type="text" class="form-control" formControlName="userName" id="userName" name="userName" />
         </div>
         <div class="form-group">
           <label for="password">Hasło  <sup>*</sup></label>
@@ -24,8 +24,8 @@
             <option [value]="UserType.Standard">Standard</option>
             <option [value]="UserType.Premium">Premium</option>
             <option [value]="UserType.VIP">VIP</option>
-          </select>       
-        </div> 
+          </select>
+        </div>
         <button type="button" class="btn btn-default">Resetuj</button>
         <button type="submit" class="btn btn-success">Rejestracja</button>
       </form>

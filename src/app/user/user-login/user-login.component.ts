@@ -4,6 +4,7 @@ import { AuthService } from '../../auth.service';
 import { Router } from '@angular/router';
 import { MessageService } from '../../message.service';
 
+
 @Component({
   selector: 'app-user-login',
   templateUrl: './user-login.component.html',
@@ -24,6 +25,7 @@ export class UserLoginComponent implements OnInit {
       userName: ['', Validators.required],
       password: ['', Validators.required]
     });
+
   }
 
   isFieldInvalid(field: string) {
@@ -33,6 +35,7 @@ export class UserLoginComponent implements OnInit {
   }
 
   login() {
+
     if (this.loginForm.dirty && this.loginForm.valid) {
       this.authService.login(this.loginForm.value)
         .subscribe(data => {

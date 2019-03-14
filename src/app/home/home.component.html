@@ -1,20 +1,15 @@
 
 <div class="jumbotron" style="margin-top: 100px; background-color:  #57B3F1; position: statc;">
   <div class="panel panel-default">
-
-
       <div class="panel-body">
-        <h2>Przykładowa aplikacja MEAN wykonana w Angular 5</h2>
-
+        <h2>Przykładowa aplikacja MEAN wykonana w Angular 7</h2>
           <div  *ngIf="showPage1 == true then showPage"></div>
-
             <ng-template #showPage>
-              <p> Przykładowa aplikacja MEAN wykonana w Angular 5, która może być używana jako początkowy szablon dla Twoich rzeczywistych aplikacji! </p>
+              <p> Przykładowa aplikacja MEAN wykonana w Angular 7, która może być używana jako początkowy szablon dla Twoich rzeczywistych aplikacji! </p>
              Pracę z Angular nalezy rozpocząć od instalacji odpowiedniego środowiska IDE do Angulara. Ja używam Visual Studio Code.
              Dane są przechowywane w bazę danych ja w tym przykładzie używam MongoDB. Server mam napisany w NodeJS. Kapilację wykonuję za pomocą nażędzia Angular CLI.
             <p></p>
             </ng-template>
-
           <div *ngIf="showPage2 == true then showPage22"> </div>
             <ng-template  #showPage22>
               <p>Uruchomienie projektu jest związane z instalacją wszystkich potrzebnych bibliotek. Lista znajduję się w pliku package.js.
@@ -23,13 +18,10 @@
               <p>Podczas wykonania powyższego polecenia, należy być w katalogu głównym projektu.</p>
               <p></p>
             </ng-template>
-
-
           <div  *ngIf="showPage3 == true then showPage33"></div>
             <ng-template #showPage33>
               <p>Baza danych jest przechowywana w MongoDB. Object User przedstawia się następująco:  </p>
               <pre>
-
               &#10100;
                 username: String,
                 password:  String,
@@ -43,10 +35,7 @@
                   &#10101;
               &#10101;
               </pre>
-
             </ng-template>
-
-
           <div class="form-group">
             <nav aria-label="Page navigation example">
               <ul class="pagination justify-content-center">

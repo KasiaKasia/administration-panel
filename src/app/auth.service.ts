@@ -18,7 +18,7 @@ export class AuthService {
   public jwtToken: string;
   public userid: string;
 
-  constructor(private router: Router, private http: Http ) {
+  constructor(private router: Router, private http: Http) {
 
     const theUser: any = JSON.parse(localStorage.getItem('currentUser'));
     if (theUser) {
@@ -27,14 +27,17 @@ export class AuthService {
   }
 
   registration(newUser) {
+
     const headers = new Headers({ 'Content-Type': 'application/json' });
     const options = new RequestOptions({ headers: headers });
+
     return this.http.post('/register', JSON.stringify(newUser), options) // , options
       .map((response: Response) => response.json())
       .catch(this.handleError);
   }
 
   isLoggedIn_(): boolean {
+
     try {
       const theUser: any = JSON.parse(localStorage.getItem('currentUser'));
       if (theUser) {
@@ -47,12 +50,13 @@ export class AuthService {
   }
 
   login(user: User) {
+
     const headers = new Headers({ 'Content-Type': 'application/json' });
     const options = new RequestOptions({ headers: headers });
 
-    return this.http.post('/login', JSON.stringify(user), options ).do((response: Response) => { //
+    return this.http.post('/login', JSON.stringify(user), options).do((response: Response) => { //
       if (response.json().success) {
-        this.currentUser = response.json().message;  
+        this.currentUser = response.json().message;  // <User>
         const userObj: any = {};
         userObj.user = response.json().message;
         userObj.token = response.json().token;
@@ -68,6 +72,6 @@ export class AuthService {
   }
 
   private handleError(error: Response) {
-     return Observable.throw(error.json().error || 'Server error');
+    return Observable.throw(error.json().error || 'Server error');
   }
 }

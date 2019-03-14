@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -11,10 +12,11 @@ export class HomeComponent implements OnInit {
   public showPage3 = false;
 
   items: any = [`<<`, '1', '2', '3', `>>`];
-  constructor() { }
 
-  ngOnInit() {
-  }
+  constructor() {}
+
+  ngOnInit() {}
+
   getValue(value: string) {
 
     if (value === '<<') {
@@ -41,8 +43,6 @@ export class HomeComponent implements OnInit {
       this.showPage1 = false;
       this.showPage2 = false;
       this.showPage3 = true;
-
     }
   }
-
 }

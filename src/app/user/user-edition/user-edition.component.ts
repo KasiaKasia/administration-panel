@@ -12,6 +12,7 @@ import { User, UserType, Address } from '../../model';
   templateUrl: './user-edition.component.html',
   styleUrls: ['./user-edition.component.css']
 })
+
 export class UserEditionComponent implements OnInit {
 
   user: User;
@@ -64,6 +65,7 @@ export class UserEditionComponent implements OnInit {
   }
 
   populateForm(data): void {
+
     this.profileForm.patchValue({
       userName: data.username,
       email: data.email,
@@ -76,14 +78,15 @@ export class UserEditionComponent implements OnInit {
   }
 
   edition(formdata: any): void {
- 
+    console.log(this.profileForm.value.description);
     if (this.profileForm.dirty && this.profileForm.valid) {
       this.userService.updateUser(this.profileForm.value)
         .subscribe(data => {
           if (!data.success && data.errcode) {
             this.authService.logout();
-            this.router.navigate(['/login']); 
-          } 
+            this.router.navigate(['/login']);
+          } else {
+          }
         });
     }
   }

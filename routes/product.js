@@ -22,7 +22,7 @@ exports.saveproduct = function (req, res, next) {
   } else {
 
     if (expid) {
-      //Edit expense
+
       products.findById({
         productName: req.body.productName
       }).exec(function (err, product) {
@@ -58,7 +58,6 @@ exports.saveproduct = function (req, res, next) {
 
     } else {
 
-      // Add new products
       let oProduct = new products({
 
         userid: userid,

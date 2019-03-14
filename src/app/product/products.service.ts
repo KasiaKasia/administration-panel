@@ -1,10 +1,7 @@
+
+import { throwError as observableThrowError, Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/do';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/observable/throw';
 import { Product } from './user-products/module-product';
 import { User } from '../model';
 import { Settings } from '../../environments/settings';
@@ -17,6 +14,7 @@ export class ProductsService {
   public jwtToken: string;
 
   constructor(private http: Http) {
+
     const theUser: any = JSON.parse(localStorage.getItem('currentUser'));
     if (theUser) {
       this.jwtToken = theUser.token;
@@ -31,7 +29,6 @@ export class ProductsService {
     let options = new RequestOptions({ headers: headers });
     return options;
   }
-
 
   add_product(userid, product) {
     return this.http.post(Settings.USER_PRODUCT + `${userid}`, JSON.stringify(product), this.options())
@@ -54,6 +51,7 @@ export class ProductsService {
   getUsersProducts() {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
+
     return this.http.get(Settings.API_USERS_PRODUCTS, options)
       .map((response: Response) => response.json())
       .catch(this.handleError);
@@ -71,8 +69,8 @@ export class ProductsService {
       .catch(this.handleError);
   }
 
-  private handleError(error: Response) {   
-    return Observable.throw(error.json().error || 'Server error');
+  private handleError(error: Response) {
+    console.error(error);
+    return observableThrowError(error.json().error || 'Server error');
   }
-
 }

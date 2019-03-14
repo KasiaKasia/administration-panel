@@ -7,6 +7,7 @@ import 'rxjs/add/operator/catch';
 import { Observable } from 'rxjs/Observable';
 import { Settings } from './../environments/settings';
 
+
 @Injectable()
 export class UserService {
 
@@ -14,6 +15,7 @@ export class UserService {
   public userid: string;
 
   constructor(private http: Http) {
+
     const theUser: any = JSON.parse(localStorage.getItem('currentUser'));
     if (theUser) {
       this.jwtToken = theUser.token;
@@ -53,7 +55,7 @@ export class UserService {
       .catch(this.handleError);
   }
 
-  private handleError(error: Response) {   
+  private handleError(error: Response) {
     return Observable.throw(error.json().error || 'Server error');
   }
 }

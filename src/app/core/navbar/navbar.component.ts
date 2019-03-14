@@ -14,6 +14,7 @@ export class NavbarComponent implements OnInit {
   UserType = UserType;
   userObj: any;
   userid: string;
+
   constructor(private router: Router, private authService: AuthService) { }
 
   dateNow: Date;

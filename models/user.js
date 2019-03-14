@@ -18,9 +18,6 @@ const UserSchema = new Schema({
     }
 });
 
-
-
-// Pre-save of user's hash password to database
 UserSchema.pre('save', function (next) {
   const users = this,
     SALT_FACTOR = 5;

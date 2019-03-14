@@ -36,7 +36,6 @@ exports.signup = function (req, res, next) {
       });
     }
 
-    // If user is not unique, return error
     if (existingUser) {
       return res.status(201).json({
         success: false,
@@ -50,7 +49,6 @@ exports.signup = function (req, res, next) {
       city: city,
     });
 
-    // If no error, create account
     let oUser = new User({
       username: userName,
       password: password,
@@ -63,8 +61,6 @@ exports.signup = function (req, res, next) {
         city: city
       }
     });
-
-
 
     oUser.save(function (err, oUser) {
       if (err) {
@@ -131,8 +127,6 @@ exports.login = (req, res, next) => {
                   'houseNumber': user.houseNumber,
                   'city': user.city
                 }
-
-
               },
               token: token
             });
@@ -185,7 +179,6 @@ exports.updateUser = function (req, res, next) {
           user.address.city = city
 
       }
-      console.log('2 EDYCJA');
       user.save(function (err) {
         if (err) {
           res.status(400).json({

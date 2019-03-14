@@ -1,4 +1,5 @@
 export interface User {
+
   id?: number;
   userid?: string;
   username: string;
@@ -11,14 +12,16 @@ export interface User {
 }
 
 export interface Address {
+
   street: string;
   houseNumber: number;
   city: string;
 }
 
 export enum UserType {
-  Standard ,
-  Premium ,
+
+  Standard,
+  Premium,
   VIP,
   Admin,
 }
